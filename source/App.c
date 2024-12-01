@@ -46,10 +46,6 @@ static int id_input_data;
 static int pass_input_data;
 #define PASS_SIZE 4
 
-void msg(char* text)
-{
-    text;
-}
 
 void confirm_access_callback(void)
 {
@@ -112,10 +108,9 @@ static void App_Menu_Task(void *p_arg) {
     list_menu_set_option(access_panel, 2, "2-Confirm", confirm_access_callback, MENU_EVENT_TYPE_CALLBACK);
     list_menu_set_option(access_panel, 3, "3-Cancel", NULL, MENU_EVENT_TYPE_CLOSE);
 
-    menu_base_t* root_menu = list_menu_create(4, "Main Menu", MENU_EXIT_ACTION_DONT_CLOSE);
+    menu_base_t* root_menu = list_menu_create(2, "Main Menu", MENU_EXIT_ACTION_DONT_CLOSE);
     list_menu_set_option(root_menu, 0, "Access", access_panel, MENU_EVENT_TYPE_OPEN_MENU);
     list_menu_set_option(root_menu, 1, "Setup Panel", NULL, MENU_EVENT_TYPE_NONE);
-    list_menu_set_option(root_menu, 2, "caja", msg, MENU_EVENT_TYPE_OPEN_MENU);
 
     call_stack = call_stack_init(MENU_CALL_STACK_SIZE, root_menu);
     menu_base_open(root_menu); // Abre el menu, setea todos los valores a los iniciales

@@ -4,4 +4,4 @@
 ../source/App.c:81:6:enter_pass_callback	16	static
 ../source/App.c:86:6:update_display	16	static
 ../source/App.c:100:13:App_Menu_Task	96	static
-../source/App.c:184:6:App_Start	88	static
+../source/App.c:180:6:App_Start	112	static
