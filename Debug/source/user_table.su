@@ -1,9 +1,0 @@
-../source/user_table.c:8:6:user_table_init	24	static
-../source/user_table.c:21:9:user_table_get_max_users	4	static
-../source/user_table.c:26:6:user_table_available	16	static
-../source/user_table.c:34:9:user_table_add	24	static
-../source/user_table.c:47:6:user_table_remove	16	static
-../source/user_table.c:55:9:user_table_find	24	static
-../source/user_table.c:68:14:user_table_get_user	16	static
-../source/user_table.c:77:6:integer_to_string	32	static
-../source/user_table.c:92:5:string_to_integer	24	static

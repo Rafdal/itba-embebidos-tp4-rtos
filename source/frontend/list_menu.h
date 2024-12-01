@@ -27,6 +27,7 @@ typedef struct LIST_MENU{
     void **option_data;     // datos adicionales de cada opcion (para guardar punteros a submenues, etc)
     uint8_t *option_type; // indica si la opcion es un submenu o un callback
     uint8_t current_option; // opcion actual
+    void (*on_custom_event)(void*); // callback para eventos personalizados
     uint8_t n_options;      // cantidad de opciones
 } list_menu_t; // Objeto Menu Lista
 
@@ -37,6 +38,7 @@ menu_base_t* list_menu_create(uint8_t options, char* title, menu_exit_action_t a
 
 void list_menu_destroy(menu_base_t *menu); 
 
+void list_menu_on_custom_event(menu_base_t *menu, void (*callback)(void*));
 
 void list_menu_set_option(menu_base_t *menu, uint8_t option_id, char* title, void* option, menu_event_type_t type);
 // DESCRIPCION Y PARAMETROS: Configurar una opcion de un menu

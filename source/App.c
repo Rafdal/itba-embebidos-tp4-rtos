@@ -21,7 +21,7 @@
 #include "drivers/display.h"
 
 /* Task 3 */
-#define TASK_MENU_STK_SIZE			1024u
+#define TASK_MENU_STK_SIZE			2048u
 #define TASK_MENU_STK_SIZE_LIMIT	(TASK_MENU_STK_SIZE / 2u)
 #define TASK_MENU_PRIO              3u
 
@@ -40,7 +40,9 @@ static menu_base_t* user_not_found_msg = NULL;
 static menu_base_t* door_open_msg = NULL;
 static menu_base_t* access_denied_msg = NULL;
 
-#define MAX_USERS 15
+#define MAX_USERS 10
+static user_table_t* user_table = NULL;
+
 static char buffer[20];
 static int id_input_data;
 static int pass_input_data;
@@ -49,24 +51,31 @@ static int pass_input_data;
 
 void confirm_access_callback(void)
 {
-    index_t user_idx = user_table_find(id_input_data);
+    index_t user_idx = user_table_find(user_table, id_input_data);
     if (user_idx < 0)
     {
         call_stack_pop(call_stack);
         call_stack_push(call_stack, user_not_found_msg);
+        pass_input_data = -1; 	// clear pass
+        id_input_data = -1;		// clear id
+        // USER NOT FOUND
         return;
     }
-    user_data_t* user = user_table_get_user(user_idx);
-    if (user != NULL && user->pin == pass_input_data)
+    user_data_t user = user_table_get_user(user_table, user_idx);
+    if (user.id != -1 && user.pin == pass_input_data)
     {
         call_stack_pop(call_stack);
         call_stack_push(call_stack, door_open_msg);
+        // DOOR OPEN (ACCESS GRANTED)
     }
     else
     {
         call_stack_pop(call_stack);
         call_stack_push(call_stack, access_denied_msg);
+        // ACCESS DENIED
     }
+    pass_input_data = -1; 	// clear pass
+	id_input_data = -1;		// clear id
 }
 
 void enter_id_callback(char* data)
@@ -120,11 +129,12 @@ static void App_Menu_Task(void *p_arg) {
         menu_base_render(display_buffer, current_menu);
         update_display(display_buffer, current_menu->slide, current_menu->cursor);
 
+        // Read Events
         OSPendMulti(event_pend_data, 2, 0, OS_OPT_PEND_BLOCKING, &os_err);
         if (event_pend_data[0].RdyObjPtr != NULL)
         {
             encoder_event_t ev;
-            encoder_get_event(&ev);
+            encoder_get_event(&ev);     // Encoder
             switch (ev.type)
             {
                 case ENC_MOVED_CW:
@@ -143,7 +153,8 @@ static void App_Menu_Task(void *p_arg) {
                     break;
             }
         }
-        if (event_pend_data[1].RdyObjPtr != NULL)
+//        bool force_pin = gpioRead(PORTNUM2PIN(PC, 10));
+        if (event_pend_data[1].RdyObjPtr != NULL)       // Lector de tarjeta
         {
             int num = 98765432;
             integer_to_string(num, buffer, 8);
@@ -187,10 +198,21 @@ void App_Start(void *p_arg) {
     serial_init(SERIAL_BAUDRATE);
     dispInit();
 
+    gpioMode(LED_R_PIN, OUTPUT);
+    gpioMode(LED_G_PIN, OUTPUT);
+    gpioMode(LED_B_PIN, OUTPUT);
+
+    //LEDS DE LA PLACA
+    gpioMode(STATUS0, OUTPUT);
+    gpioMode(STATUS1, OUTPUT);
+
+    // Test force pin
+//    gpioMode(PORTNUM2PIN(PC, 10), INPUT_PULLUP); // default HIGH
+
     OSSemCreate(&semLectorAvailable, "sem lector", 0, &os_err);
     lector_Init(&semLectorAvailable);
 
-    user_table_init(MAX_USERS);
+    user_table = user_table_create(MAX_USERS);
 
     user_data_t user1 = {
         .id = 99,
@@ -222,12 +244,12 @@ void App_Start(void *p_arg) {
         .pin = 222,
         .current_floor = 3
     };
-    user_table_add(user1);
-    user_table_add(user2);
-    user_table_add(user3);
-    user_table_add(user4);
-    user_table_add(user5);
-    user_table_add(user6);
+    user_table_add(user_table, user1);
+    user_table_add(user_table, user2);
+    user_table_add(user_table, user3);
+    user_table_add(user_table, user4);
+    user_table_add(user_table, user5);
+    user_table_add(user_table, user6);
 
     event_pend_data[0].PendObjPtr = (OS_PEND_OBJ *)encoder_sem_ptr();
     event_pend_data[1].PendObjPtr = (OS_PEND_OBJ *)&semLectorAvailable;

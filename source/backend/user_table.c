@@ -1,89 +1,109 @@
 #include "user_table.h"
 
-static user_data_t* user_table = NULL;
-
-static uint8_t max_users = 0;
-
-
-void user_table_init(uint8_t max_users_)
+user_table_t* user_table_create(uint8_t max_users)
 {
-    if (user_table != NULL)
-        free(user_table);
+    user_table_t *table = (user_table_t*)malloc(sizeof(user_table_t));
+    if (table == NULL)
+        return NULL;
 
-    max_users = max_users_;
-    user_table = (user_data_t*)calloc(max_users, sizeof(user_data_t));
-    for (int i = 0; i < max_users_; i++)
+    table->max_users = max_users;
+    table->user_table = (user_data_t*)calloc(max_users, sizeof(user_data_t));
+    if (table->user_table == NULL)
     {
-        user_table[i].id = -1;
+        free(table);
+        return NULL;
     }
-}
-
-uint8_t user_table_get_max_users()
-{
-    return max_users;
-}
-
-bool user_table_available(index_t index)    // returns true if index is valid and available
-{
-    if (index < 0 || index >= max_users)
-        return false;
-
-    return !(user_table[index].id >= 0);
-}
-
-index_t user_table_add(user_data_t user_data)  // returns index  or -1 if table is full
-{
     for (int i = 0; i < max_users; i++)
     {
-        if (!user_table[i].id >= 0)
+        table->user_table[i].id = -1;
+    }
+    return table;
+}
+
+void user_table_destroy(user_table_t *table)
+{
+    if (table == NULL)
+        return;
+    free(table->user_table);
+    free(table);
+}
+
+uint8_t user_table_get_max_users(user_table_t* table)
+{
+    return table->max_users;
+}
+
+bool user_table_available(user_table_t* table, index_t index)    // returns true if index is valid and available
+{
+    if (index < 0 || index >= table->max_users)
+        return false;
+
+    return !(table->user_table[index].id >= 0);
+}
+
+index_t user_table_add(user_table_t* table, user_data_t user_data)  // returns index  or -1 if table is full
+{
+    for (int i = 0; i < table->max_users; i++)
+    {
+        if (table->user_table[i].id == -1)
         {
-            user_table[i] = user_data;
+            table->user_table[i] = user_data;
             return i;
         }
     }
     return -1;
 }
 
-uint8_t user_table_count_users_in_floor(uint8_t floor) // returns number of users in floor
+uint8_t user_table_count_users_in_floor(user_table_t* table, uint8_t floor) // returns number of users in floor
 {
     uint8_t count = 0;
-    for (int i = 0; i < max_users; i++)
+    for (int i = 0; i < table->max_users; i++)
     {
-        if (user_table[i].current_floor == floor)
+        if (table->user_table[i].current_floor == floor)
             count++;
     }
     return count;
 }
 
-void user_table_remove(index_t index)       // removes user at index
+void user_table_remove(user_table_t* table, index_t index)       // removes user at index
 {
-    if (index < 0 || index >= max_users)
+    if (index < 0 || index >= table->max_users)
         return;
 
-    user_table[index].id = -1;
+    table->user_table[index].id = -1;
 }
 
-index_t user_table_find(int32_t id)           // returns index  or -1 if not found
+index_t user_table_find(user_table_t* table, int32_t id)           // returns index  or -1 if not found
 {
     if (id < 0)
         return -1;
-    for (int i = 0; i < max_users; i++)
+    for (int i = 0; i < table->max_users; i++)
     {
-        if (user_table[i].id == id)
+        if (table->user_table[i].id == id)
             return i;
     }
     return -1;
 }
 
 // returns pointer to user or NULL if not found
-user_data_t *user_table_get_user(index_t index)
+user_data_t *user_table_get_user_ptr(user_table_t* table, index_t index)
 {
-    if (index < 0 || index >= max_users || !(user_table[index].id >= 0))
+    if (index < 0 || index >= table->max_users || !(table->user_table[index].id >= 0))
         return NULL;
 
-    return &user_table[index];
+    return &table->user_table[index];
 }
 
+// returns user with id or id=-1 if not found
+user_data_t user_table_get_user(user_table_t* table, index_t index)
+{
+    user_data_t user = {0};
+    user.id = -1;
+    if (index < 0 || index >= table->max_users || !(table->user_table[index].id >= 0))
+        return user;
+
+    return table->user_table[index];
+}
 
 void integer_to_string(int num, char *str, uint8_t len)
 {

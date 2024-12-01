@@ -1,4 +1,0 @@
-../source/frontend/menu_call_stack.c:3:20:menu_call_stack_init	24	static
-../source/frontend/menu_call_stack.c:17:6:menu_call_stack_push	16	static
-../source/frontend/menu_call_stack.c:26:7:menu_call_stack_current	16	static
-../source/frontend/menu_call_stack.c:35:7:menu_call_stack_pop	16	static

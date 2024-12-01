@@ -41,6 +41,7 @@ menu_base_t* list_menu_create(uint8_t options, char* title, menu_exit_action_t a
         // Asignar los datos
         list_menu->current_option = 0;
         list_menu->n_options = options;
+        list_menu->on_custom_event = NULL;
         
         base->child = list_menu;
         base->run_child = list_menu_run;
@@ -48,6 +49,14 @@ menu_base_t* list_menu_create(uint8_t options, char* title, menu_exit_action_t a
         base->open_menu = list_menu_open;
     }
     return base;
+}
+
+void list_menu_on_custom_event(menu_base_t *menu, void (*callback)(void*)){
+    if(menu != NULL && menu->child != NULL)
+    {
+        list_menu_t *list_menu = (list_menu_t*) menu->child;
+        list_menu->on_custom_event = callback;
+    }
 }
 
 void list_menu_set_option(menu_base_t *menu, uint8_t option_id, char* title, void* option, menu_event_type_t type){
@@ -114,6 +123,11 @@ static menu_event_t list_menu_run(void* base_ptr){
 
         case MENU_STATE_BACK: // Ir hacia atras
             base->state = MENU_STATE_CLOSE; // Cerrar el menu. La accion de salida la gestiona la clase base
+            break;
+
+        case MENU_STATE_CUSTOM: // Estado personalizado
+            if(list_menu->on_custom_event != NULL)
+                list_menu->on_custom_event(base_ptr);
             break;
 
         default:
