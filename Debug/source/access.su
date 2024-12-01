@@ -1,0 +1,6 @@
+../source/access.c:28:13:led_timer_callback	8	static
+../source/access.c:33:6:access_init	24	static
+../source/access.c:39:6:access_open_dialog	24	static
+../source/access.c:69:6:access_card_trigger_event	24	static
+../source/access.c:80:6:access_read_card	16	static
+../source/access.c:93:13:check_pin	32	static

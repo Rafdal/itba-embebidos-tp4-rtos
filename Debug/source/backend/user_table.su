@@ -1,0 +1,10 @@
+../source/backend/user_table.c:8:6:user_table_init	24	static
+../source/backend/user_table.c:21:9:user_table_get_max_users	4	static
+../source/backend/user_table.c:26:6:user_table_available	16	static
+../source/backend/user_table.c:34:9:user_table_add	24	static
+../source/backend/user_table.c:47:9:user_table_count_users_in_floor	24	static
+../source/backend/user_table.c:58:6:user_table_remove	16	static
+../source/backend/user_table.c:66:9:user_table_find	24	static
+../source/backend/user_table.c:79:14:user_table_get_user	16	static
+../source/backend/user_table.c:88:6:integer_to_string	32	static
+../source/backend/user_table.c:103:5:string_to_integer	24	static

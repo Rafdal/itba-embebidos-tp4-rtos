@@ -1,0 +1,5 @@
+../source/frontend/menu_base.c:4:14:menu_base_create	24	static
+../source/frontend/menu_base.c:31:6:menu_base_render	16	static
+../source/frontend/menu_base.c:40:6:menu_base_open	16	static
+../source/frontend/menu_base.c:49:14:menu_base_run	24	static
+../source/frontend/menu_base.c:99:6:menu_base_destroy	16	static

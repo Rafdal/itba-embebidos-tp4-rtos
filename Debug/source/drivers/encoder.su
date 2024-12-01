@@ -1,0 +1,6 @@
+../source/drivers/encoder.c:34:13:enc_periodic_callback	16	static
+../source/drivers/encoder.c:110:13:encoder_read_irq	8	static
+../source/drivers/encoder.c:126:6:encoder_init	32	static
+../source/drivers/encoder.c:154:9:encoder_sem_ptr	4	static
+../source/drivers/encoder.c:159:6:encoder_set_pos	16	static
+../source/drivers/encoder.c:164:6:encoder_get_event	16	static

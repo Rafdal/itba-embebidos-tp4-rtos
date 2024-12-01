@@ -1,0 +1,13 @@
+../source/drivers/../../SDK/CMSIS/core_cm4.h:1677:22:__NVIC_EnableIRQ	16	static
+../source/drivers/gpio.c:36:6:gpioMode	32	static
+../source/drivers/gpio.c:76:6:gpioIRQ	24	static
+../source/drivers/gpio.c:94:6:gpioIRQEnable	24	static
+../source/drivers/gpio.c:108:6:gpioIRQDisable	24	static
+../source/drivers/gpio.c:129:6:gpioWrite	24	static
+../source/drivers/gpio.c:146:6:gpioToggle	24	static
+../source/drivers/gpio.c:160:6:gpioRead	24	static
+../source/drivers/gpio.c:169:9:PORTA_IRQHandler	24	static
+../source/drivers/gpio.c:180:9:PORTB_IRQHandler	24	static
+../source/drivers/gpio.c:191:9:PORTC_IRQHandler	24	static
+../source/drivers/gpio.c:203:9:PORTD_IRQHandler	24	static
+../source/drivers/gpio.c:215:9:PORTE_IRQHandler	24	static

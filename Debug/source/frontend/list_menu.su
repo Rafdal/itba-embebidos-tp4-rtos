@@ -1,0 +1,7 @@
+../source/frontend/list_menu.c:11:14:list_menu_create	24	static
+../source/frontend/list_menu.c:53:6:list_menu_set_option	32	static
+../source/frontend/list_menu.c:66:6:list_menu_destroy	24	static
+../source/frontend/list_menu.c:78:13:list_menu_open	24	static
+../source/frontend/list_menu.c:84:21:list_menu_run	32	static
+../source/frontend/list_menu.c:127:13:list_menu_render	24	static
+../source/frontend/list_menu.c:133:6:list_menu_go_to_option	24	static

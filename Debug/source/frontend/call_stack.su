@@ -1,0 +1,4 @@
+../source/frontend/call_stack.c:3:15:call_stack_init	24	static
+../source/frontend/call_stack.c:18:6:call_stack_push	16	static
+../source/frontend/call_stack.c:27:7:call_stack_current	16	static
+../source/frontend/call_stack.c:36:7:call_stack_pop	16	static

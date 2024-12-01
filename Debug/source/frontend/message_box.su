@@ -1,0 +1,2 @@
+../source/frontend/message_box.c:5:14:message_box	40	static
+../source/frontend/message_box.c:15:6:message_box_destroy	16	static

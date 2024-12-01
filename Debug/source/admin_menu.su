@@ -1,0 +1,4 @@
+../source/admin_menu.c:25:6:admin_menu_init	16	static
+../source/admin_menu.c:38:6:admin_menu_run	16	static
+../source/admin_menu.c:61:13:add_user	32	static
+../source/admin_menu.c:90:6:admin_trigger_card	40	static

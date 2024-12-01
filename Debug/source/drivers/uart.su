@@ -1,0 +1,16 @@
+../source/drivers/../../SDK/CMSIS/core_cm4.h:1677:22:__NVIC_EnableIRQ	16	static
+../source/drivers/uart.c:34:6:uart_init	24	static
+../source/drivers/uart.c:99:6:uart_available	16	static
+../source/drivers/uart.c:106:9:uart_read	16	static
+../source/drivers/uart.c:115:13:uart_set_baudrate	32	static
+../source/drivers/uart.c:202:6:uart_load_buffer	16	static
+../source/drivers/uart.c:210:6:uart_disable_tx_interrupt	16	static
+../source/drivers/uart.c:217:6:uart_enable_tx_interrupt	16	static
+../source/drivers/uart.c:225:6:uart_write_array	32	static
+../source/drivers/uart.c:241:6:uart_write	16	static
+../source/drivers/uart.c:259:13:uart_handle_interrupt	32	static
+../source/drivers/uart.c:284:9:UART0_RX_TX_IRQHandler	16	static
+../source/drivers/uart.c:285:9:UART1_RX_TX_IRQHandler	16	static
+../source/drivers/uart.c:286:9:UART2_RX_TX_IRQHandler	16	static
+../source/drivers/uart.c:287:9:UART3_RX_TX_IRQHandler	16	static
+../source/drivers/uart.c:288:9:UART4_RX_TX_IRQHandler	16	static

@@ -1,0 +1,7 @@
+../source/App.c:49:6:msg	16	static
+../source/App.c:54:6:confirm_access_callback	16	static
+../source/App.c:76:6:enter_id_callback	16	static
+../source/App.c:81:6:enter_pass_callback	16	static
+../source/App.c:86:6:update_display	16	static
+../source/App.c:100:13:App_Menu_Task	96	static
+../source/App.c:184:6:App_Start	88	static

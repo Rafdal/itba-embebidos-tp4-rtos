@@ -1,0 +1,7 @@
+../source/utils/circular_buffer.c:5:19:circular_buffer_init	24	static
+../source/utils/circular_buffer.c:20:6:circular_buffer_free	16	static
+../source/utils/circular_buffer.c:27:8:circular_buffer_used	16	static
+../source/utils/circular_buffer.c:31:6:circular_buffer_empty	16	static
+../source/utils/circular_buffer.c:35:6:circular_buffer_full	16	static
+../source/utils/circular_buffer.c:39:6:circular_buffer_push	16	static
+../source/utils/circular_buffer.c:50:9:circular_buffer_pop	24	static

@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "mk64f12.h": "c",
+        "hardware.h": "c",
+        "fsl_device_registers.h": "c",
+        "os.h": "c",
+        "serial.h": "c",
+        "menu.h": "c",
+        "string": "c",
+        "xstring": "c",
+        "xutility": "c",
+        "iosfwd": "c",
+        "num_menu.h": "c",
+        "menu_base.h": "c",
+        "compare": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "xmemory": "c",
+        "xtr1common": "c",
+        "input_menu.h": "c"
+    }
+}

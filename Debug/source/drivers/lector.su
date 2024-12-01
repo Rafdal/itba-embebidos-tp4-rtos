@@ -1,0 +1,9 @@
+../source/drivers/lector.c:97:13:lector_tmr_callback	16	static
+../source/drivers/lector.c:103:6:lector_Init	64	static
+../source/drivers/lector.c:147:6:read_enable	16	static
+../source/drivers/lector.c:160:13:read_lector_data	16	static
+../source/drivers/lector.c:200:13:parse_data	56	static
+../source/drivers/lector.c:251:6:card_number_to_string	32	static
+../source/drivers/lector.c:265:10:string_to_card_number	72	static
+../source/drivers/lector.c:280:10:get_card_number	64	static
+../source/drivers/lector.c:299:12:get_trk2	24	static
